@@ -1,3 +1,6 @@
+# Procedural Waves
+This project is a demonstration of procedurally generated ocean waves using WebGL. The water surface consist of a plane with 200x200 quads and is generated entirely by displacing the vertices and bumping their normals. The 3D environment is developed by Per Blåwiik in javascript from scratch using WebGL and the GUI (HTML Page) is created with reactjs.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
