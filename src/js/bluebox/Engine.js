@@ -238,7 +238,6 @@ class Engine {
     }
 
     loadDefaultScene(scene) {
-
         // Initiate procedural shader inputs
         this.updateWaveParameter("harmonicAmplitude");
         this.updateWaveParameter("harmonicWaveLength");
@@ -259,7 +258,6 @@ class Engine {
 
         // Add water planes to the scene
         scene.addGameObject(plane1);
-
         this.water =[];
         this.water.push(plane1);
 
@@ -268,7 +266,6 @@ class Engine {
         const wallWidth = 100.0;
 
         // Create gray floor
-        /*
         scene.addGameObject(this.createGameObject({
             shape: SHAPE.CUBE,
             name: 'Floor',
@@ -277,7 +274,6 @@ class Engine {
             color: [0.75, 0.75, 0.75],
             shader: 'phong'
         }));
-        */
 
         // Create blue walls
         let wallColor = [1.0, 1.0, 1.0];
