@@ -231,7 +231,7 @@ class ProceduralShader {
                 "float harmonicWave = 2.0*harmonicAmplitude*pow((sin(theta) + 1.0)/2.0, waveSharpness);",
 
                 // Add three layers of perlin noise to the wave
-                "float waveNoise = 5.0*snoise(0.005*vec3(worldPos.xz, 20.0*time));",
+                "float waveNoise = 5.0*snoise(0.005*vec3(worldPos.xz, 10.0*time));",
                 "waveNoise += 0.25*snoise(0.1*vec3(worldPos.xz, 4.0*time));",
 
                 // Add the noise and the harmonic wave together as the final wave function
