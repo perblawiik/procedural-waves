@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "544471542c9fd253717b3386669e5ac8",
+    "revision": "f778f1f013802768c1e09e98c4f9cbad",
     "url": "/procedural-waves/index.html"
   },
   {
-    "revision": "e8243745836a7fc6f656",
+    "revision": "1983a96567864cdce1c4",
     "url": "/procedural-waves/static/css/main.50412c22.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/procedural-waves/static/js/2.490af79e.chunk.js.LICENSE"
   },
   {
-    "revision": "e8243745836a7fc6f656",
-    "url": "/procedural-waves/static/js/main.48a9c3b2.chunk.js"
+    "revision": "1983a96567864cdce1c4",
+    "url": "/procedural-waves/static/js/main.035b8512.chunk.js"
   },
   {
     "revision": "c5a026c238f5d8456044",
