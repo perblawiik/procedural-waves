@@ -224,7 +224,7 @@ class ProceduralShader {
 
                 // Create a harmonic base for the wave with a sharp nonnegative sine function
                 // Compute frequency based on the wave length (w = 2/L)
-                "float harmonicFrequency = 2.0/harmonicWaveLength;",
+                "float harmonicFrequency = 6.28318530718/harmonicWaveLength;",
                 // Compute the phase based on the speed and frequency
                 "float harmonicPhase = harmonicSpeed * harmonicFrequency;",
                 "float theta = (xzRotated.x + xzRotated.y)*harmonicFrequency + harmonicPhase*time;",

@@ -104,8 +104,8 @@ class SidePanel extends Component {
                     <input style={{width:rangeWidth}}
                            id={this.props.waveLengthTag}
                            type="range"
-                           min="5.0"
-                           max="100.0"
+                           min="15.0"
+                           max="300.0"
                            step="1.0"
                            defaultValue={ConnectionManager.getItemValue(this.props.waveLengthTag)}
                            onChange={this.setNewValue.bind(this, this.props.waveLengthTag)}/>

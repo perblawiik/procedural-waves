@@ -27,7 +27,7 @@ class App extends Component {
         ConnectionManager.init();
         ConnectionManager.registerItem(this.state.colorTag, { r: 0.1, g: 0.15, b: 0.4 });
         ConnectionManager.registerItem(this.state.amplitudeTag, 4.0);
-        ConnectionManager.registerItem(this.state.waveLengthTag, 20.0);
+        ConnectionManager.registerItem(this.state.waveLengthTag, 65.0);
         ConnectionManager.registerItem(this.state.sharpnessTag, 3.0);
         ConnectionManager.registerItem(this.state.speedTag, 5.0);
         ConnectionManager.registerItem(this.state.angleTag, 1.57079632679); // PI/2
