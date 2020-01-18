@@ -240,7 +240,7 @@ class ProceduralShader {
                 "float waveFunction = harmonicWave + waveNoise;",
 
                 // Displace the surface y-coordinate (up/down)
-                "vec3 displacedPosition = vec3(vertPosition.x, vertPosition.y + waveFunction, vertPosition.z);",
+                "vec3 displacedPosition = vec3(vertPosition.x, waveFunction, vertPosition.z);",
 
                 // Compute the normal for the displaced surface
                 "float A = waveSharpness*harmonicFrequency*harmonicAmplitude;",
@@ -339,6 +339,7 @@ class ProceduralShader {
                 // Bump then fragment normal with four layers of perlin noise
                 "float baseSpeed = 2.0;",
                 "float baseFrequency = 0.5;",
+
                 "vec3 gradient1 = sdnoise(baseFrequency*vec3(FragPosition.xz, Time*baseSpeed));",
                 "vec3 gradient2 = sdnoise(4.0*baseFrequency*vec3(FragPosition.xz, 0.25*Time*baseSpeed));",
                 "vec3 gradient3 = sdnoise(8.0*baseFrequency*vec3(FragPosition.xz, 0.125*Time*baseSpeed));",
