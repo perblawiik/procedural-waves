@@ -99,7 +99,7 @@ class SidePanel extends Component {
 
                 <div style={settingContainerStyle}>
                     <p style={textStyle}>
-                        Wave Length
+                        Period
                     </p>
                     <input style={{width:rangeWidth}}
                            id={this.props.waveLengthTag}

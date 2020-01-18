@@ -105,7 +105,9 @@ class ProceduralShader {
                 "dot(p2,x2), dot(p3,x3) ) );",
             "}",
 
-            "float sdnoise(vec3 v, out vec3 gradient) {",
+            "vec3 sdnoise(vec3 v) {",
+                "vec3 gradient = vec3(0.0);",
+
                 "const vec2  C = vec2(1.0/6.0, 1.0/3.0);",
                 "const vec4  D = vec4(0.0, 0.5, 1.0, 2.0);",
 
@@ -178,7 +180,7 @@ class ProceduralShader {
                 "gradient += m4.x * p0 + m4.y * p1 + m4.z * p2 + m4.w * p3;",
                 "gradient *= 42.0;",
 
-                "return 42.0 * dot(m4, pdotx);",
+                "return gradient;",
             "}"
         ].join("\n");
     }
@@ -220,15 +222,15 @@ class ProceduralShader {
 
                 // Compute wave direction
                 "vec2 direction = vec2(sin(harmonicDirectionAngle), cos(harmonicDirectionAngle));",
-                "vec2 xzRotated = vec2(worldPos.x*direction.x, worldPos.z*direction.y);",
+                "float xzRotated = dot(direction, worldPos.xz);",
 
                 // Create a harmonic base for the wave with a sharp nonnegative sine function
                 // Compute frequency based on the wave length (w = 2/L)
                 "float harmonicFrequency = 6.28318530718/harmonicWaveLength;",
                 // Compute the phase based on the speed and frequency
                 "float harmonicPhase = harmonicSpeed * harmonicFrequency;",
-                "float theta = (xzRotated.x + xzRotated.y)*harmonicFrequency + harmonicPhase*time;",
-                "float harmonicWave = 2.0*harmonicAmplitude*pow((sin(theta) + 1.0)/2.0, waveSharpness);",
+                "float theta = xzRotated*harmonicFrequency + harmonicPhase*time;",
+                "float harmonicWave = 2.0*harmonicAmplitude*pow((sin(theta) + 1.0)*0.5, waveSharpness);",
 
                 // Add three layers of perlin noise to the wave
                 "float waveNoise = 5.0*snoise(0.005*vec3(worldPos.xz, 10.0*time));",
@@ -242,7 +244,7 @@ class ProceduralShader {
 
                 // Compute the normal for the displaced surface
                 "float A = waveSharpness*harmonicFrequency*harmonicAmplitude;",
-                "float B = pow((sin(theta) + 1.0)/2.0, waveSharpness - 1.0);",
+                "float B = pow((sin(theta) + 1.0)*0.5, waveSharpness - 1.0);",
                 "float C = cos(theta);",
                 "float partialDerivativeX = direction.x*A*B*C;",
                 "float partialDerivativeZ = direction.y*A*B*C;",
@@ -337,15 +339,12 @@ class ProceduralShader {
                 // Bump then fragment normal with four layers of perlin noise
                 "float baseSpeed = 2.0;",
                 "float baseFrequency = 0.5;",
-                "vec3 gradient1 = vec3(0.0);",
-                "float noise = sdnoise(baseFrequency*vec3(FragPosition.xz, Time*baseSpeed), gradient1);",
-                "vec3 gradient2 = vec3(0.0);",
-                "noise += 0.25*sdnoise(4.0*baseFrequency*vec3(FragPosition.xz, 0.25*Time*baseSpeed), gradient2);",
-                "vec3 gradient3 = vec3(0.0);",
-                "noise += 0.125*sdnoise(8.0*baseFrequency*vec3(FragPosition.xz, 0.125*Time*baseSpeed), gradient3);",
-                "vec3 gradient4 = vec3(0.0);",
-                "noise += 0.0625*sdnoise(16.0*baseFrequency*vec3(FragPosition.xz, 0.0625*Time*baseSpeed), gradient4);",
+                "vec3 gradient1 = sdnoise(baseFrequency*vec3(FragPosition.xz, Time*baseSpeed));",
+                "vec3 gradient2 = sdnoise(4.0*baseFrequency*vec3(FragPosition.xz, 0.25*Time*baseSpeed));",
+                "vec3 gradient3 = sdnoise(8.0*baseFrequency*vec3(FragPosition.xz, 0.125*Time*baseSpeed));",
+                "vec3 gradient4 = sdnoise(16.0*baseFrequency*vec3(FragPosition.xz, 0.0625*Time*baseSpeed));",
 
+                // Compute the final bump
                 "float bumpStrength = 0.05;",
                 "vec3 bumb = normalize(0.5*gradient1 + mix(mix(gradient2, gradient3, 0.5), gradient4, 0.5));",
                 "vec3 bumpedNormal = normalize(vec3(Normal + bumpStrength*bumb));",
