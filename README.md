@@ -3,7 +3,7 @@ This project is a demonstration of real-time procedurally generated ocean waves 
 
 All irregularities for displacement and bumping are based on 3D-simplex noise functions for WebGL found [here](https://github.com/stegu/webgl-noise).
 
-The latest build can be viewed [here](https://perblawiik.github.io/procedural-waves/). If you are using Firefox and are experiencing low framrate, try switching the web browser to Google Chrome.
+The latest build can be viewed [here](https://perblawiik.github.io/procedural-waves/). If you are using Firefox and are experiencing a low frame rate, try switching the web browser to Google Chrome.
 
 ![WavesExample](/examples/waves.png)
 
