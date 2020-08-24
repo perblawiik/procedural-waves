@@ -6,20 +6,22 @@
 /* POSSIBLE IMPROVEMENTS:
 *  - Surface breaking foam
 *  - Wave sharpness based on the water depth
-*  - Tessellation
 * */
 
 class ProceduralShader {
-        static get perlinNoise() {
         //
-        // Description : Array and textureless GLSL 3D simplex noise function.
-        //      Author : Ian McEwan, Ashima Arts.
-        //  Maintainer : ijm
-        //     Lastmod : 20110822 (ijm)
-        //     License : Copyright (C) 2011 Ashima Arts. All rights reserved.
+        // Description : Array- and textureless GLSL 3-D simplex noise
+        //               function with optional analytic gradient.
+        //     Authors : Ian McEwan, Ashima Arts and Stefan Gustavson, LiU.
+        //  Maintainer : stegu
+        //     Lastmod : 20161021 (stegu)
+        //     License : Copyright (C) 2011-2016 Ashima Arts and Stefan Gustavson.
+        //               All rights reserved.
         //               Distributed under the MIT License. See LICENSE file.
         //               https://github.com/ashima/webgl-noise
+        //               https://github.com/stegu/webgl-noise
         //
+    static get perlinNoise() {
         return [
             "vec3 mod289(vec3 x) {",
                 "return x - floor(x * (1.0 / 289.0)) * 289.0;",
